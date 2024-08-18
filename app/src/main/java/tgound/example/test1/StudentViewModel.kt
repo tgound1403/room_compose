@@ -12,7 +12,7 @@ class StudentViewModel(application: Application) : AndroidViewModel(application)
     val allStudents: Flow<List<Student>>
 
     init {
-        val database = AppDatabase.getDatabase(application)
+        val database = AppDatabase.getInstance(application)
         val dao = database.studentDao()
         repository = StudentRepository(dao)
         allStudents = repository.allStudents

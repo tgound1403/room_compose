@@ -26,6 +26,7 @@ fun MainScreen(viewModel: StudentViewModel = viewModel()) {
     var name by remember { mutableStateOf("") }
     var age by remember { mutableStateOf("") }
     var address by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf( "") }
 
     Column(modifier = Modifier.padding(16.dp)) {
         TextField(
@@ -45,6 +46,13 @@ fun MainScreen(viewModel: StudentViewModel = viewModel()) {
         TextField(
             value = address,
             onValueChange = { address = it },
+            label = { Text("Gender") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        TextField(
+            value = gender,
+            onValueChange = { gender = it },
             label = { Text("Address") },
             modifier = Modifier.fillMaxWidth()
         )
@@ -54,12 +62,14 @@ fun MainScreen(viewModel: StudentViewModel = viewModel()) {
                 val student = Student(
                     name = name,
                     age = age.toIntOrNull() ?: 0,
-                    address = address
+                    address = address,
+                    gender = gender
                 )
                 viewModel.insertStudent(student)
                 name = ""
                 age = ""
                 address = ""
+                gender = ""
             },
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -85,6 +95,7 @@ fun StudentItem(student: Student, viewModel: StudentViewModel) {
             Text("Name: ${student.name}")
             Text("Age: ${student.age}")
             Text("Address: ${student.address}")
+            Text("Gender: ${student.gender}")
             Button(
                 onClick = { viewModel.deleteStudent(student) },
                 modifier = Modifier.fillMaxWidth()

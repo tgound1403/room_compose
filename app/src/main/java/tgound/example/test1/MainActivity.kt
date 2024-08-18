@@ -1,3 +1,6 @@
+package tgound.example.test1
+
+import MainScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
